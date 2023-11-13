@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profil</title>
+</head>
+<body>
+    <h1>Profil</h1>
+    <p>Bienvenue, {{ session['username'] }}!</p>
+    <p>Votre ID: {{ session['id'] }}</p>
+    <!-- Ajoutez d'autres informations de profil ici -->
+    <a href="{{ url_for('index') }}">Retour à la page d'accueil</a>
+    <a href="{{ url_for('liste_livres') }}">Listes des Livres</a>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inscription</title>
+</head>
+<body>
+    <h1>Inscription</h1>
+    <form method="POST" action="{{ url_for('inscription') }}">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br>
+
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required><br>
+
+        <label for="userName">Choisissez un pseudo:</label>
+        <input type="text" id="userName" name="userName" required><br>
+
+        <label for="mdp">Mot de passe:</label>
+        <input type="password" id="mdp" name="mdp" required><br>
+
+        <div class="msg">{{ msg }}</div> <!-- ligne pour afficher le message d'erreur -->
+
+        <input type="submit" value="S'inscrire">
+    </form>
+    <style>
+    body {
+    background-image: url('https://cdn.pixabay.com/photo/2015/07/31/11/45/library-869061_1280.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+form input[type="text"], form input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+form label {
+    font-size: 16px;
+    color: #000;
+}
+    </style>
+</body>
+</html>

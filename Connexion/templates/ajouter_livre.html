@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un Livre</title>
+    <script>
+    function updateDisponibilite() {
+        var nbExemplaire = document.getElementById('Nb_exemplaire_copies').value;
+        var disponibilite = (nbExemplaire > 0) ? 'Disponible' : 'Indisponible';
+        document.getElementById('disponibiliteLabel').innerText = 'Disponibilité: ' + disponibilite;
+    }
+</script>
+</head>
+<body>
+    <h1>Ajouter un Livre</h1>
+    <form method="post" action="{{ url_for('ajouter_livre') }}">
+        <label for="ISBN">ISBN:</label><br>
+        <input type="text" id="ISBN" name="ISBN" required><br>
+
+        <label for="titre">Titre:</label>
+        <input type="text" id="titre" name="titre" required><br>
+
+        <label for="auteur">Auteur:</label>
+        <input type="text" id="auteur" name="auteur" required><br>
+
+        <label for="éditeur">éditeur:</label>
+        <input type="text" id="éditeur" name="éditeur" required><br>
+
+        <label for="Nb_exemplaire_copies">Nombre d'exemplaires:</label>
+        <input type="text" id="Nb_exemplaire_copies" name="Nb_exemplaire_copies" oninput="updateDisponibilite()"><br>
+
+        <label id="disponibiliteLabel">Disponibilité: Indisponible</label><br>
+        
+
+       
+
+
+
+
+        <input type="submit" value="Ajouter">
+    </form>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#disponibiliteLabel {
+    margin-top: 8px;
+    font-style: italic;
+}
+
+    </style>
+</body>
+</html>

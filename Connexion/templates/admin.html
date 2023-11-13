@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+
+<div id="ajouter-livre" style="display: none;">
+    <!-- Form for adding a book -->
+    <h2>Ajouter un livre</h2>
+    <form method="post" action="{{ url_for('ajouter_livre') }}">
+        <label for="ISBN">ISBN:</label><br>
+        <input type="text" id="ISBN" name="ISBN" required><br>
+
+        <label for="titre">Titre:</label>
+        <input type="text" id="titre" name="titre" required><br>
+
+        <label for="auteur">Auteur:</label>
+        <input type="text" id="auteur" name="auteur" required><br>
+
+        <label for="éditeur">éditeur:</label>
+        <input type="text" id="éditeur" name="éditeur" required><br>
+
+        <label for="Nb_exemplaire_copies">Nombre d'exemplaires:</label>
+        <input type="text" id="Nb_exemplaire_copies" name="Nb_exemplaire_copies" oninput="updateDisponibilite()"><br>
+
+        <label id="disponibiliteLabel">Disponibilité: Indisponible</label><br>
+        
+
+       
+
+
+
+
+        <input type="submit" value="Ajouter">
+    </form>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#disponibiliteLabel {
+    margin-top: 8px;
+    font-style: italic;
+}
+
+    </style>
+</div>
+
+<div id="ajouter-pret" style="display: none;">
+    <!-- Form for adding a loan -->
+    <h2>Ajouter un prêt</h2>
+    <!-- Add your form elements here -->
+</div>
+
+<div id="valider-emprunt" style="display: none;">
+    <!-- Form or content for validating a loan -->
+    <h2>Valider un prêt</h2>
+    <!-- Add your form elements or content here -->
+</div>
+
+<div id="modifier-livre" style="display: none;">
+    <!-- Form for modifying a book -->
+    <h2>Modifier un livre</h2>
+    <form method="post" action="{{ url_for('modifier_livre') }}">
+        <label for="ISBN">ISBN du livre à modifier:</label><br>
+        <input type="text" id="ISBN" name="ISBN" required><br>
+
+        <label for="new_title">Nouveau titre:</label><br>
+        <input type="text" id="new_title" name="new_title" required><br>
+
+        <label for="new_author">Nouvel auteur:</label><br>
+        <input type="text" id="new_author" name="new_author" required><br>
+
+        <label for="new_publisher">Nouvel éditeur:</label><br>
+        <input type="text" id="new_publisher" name="new_publisher" required><br>
+
+        <input type="submit" value="Modifier">
+    </form>
+</div>
+
+<div id="supprimer-livre" style="display: none;">
+    <!-- Form for deleting a book -->
+    <h2>Supprimer un livre</h2>
+    <form method="post" action="{{ url_for('supprimer_livre') }}">
+        <label for="ISBN">ISBN du livre à supprimer:</label><br>
+        <input type="text" id="ISBN" name="ISBN" required><br>
+
+        <input type="submit" value="Supprimer">
+    </form>
+</div>
+
+
+<script>
+    function showForm(formId) {
+        // Hide all forms
+        document.querySelectorAll('[id^=""]').forEach(function(element) {
+            element.style.display = 'none';
+        });
+
+        // Show the selected form
+        document.getElementById(formId).style.display = 'block';
+    }
+</script>
+
+<button onclick="showForm('ajouter-livre')">Ajouter un livre</button>
+<button onclick="showForm('ajouter-pret')">Ajouter un prêt</button>
+<button onclick="showForm('valider-emprunt')">Valider un prêt</button>
+<button onclick="showForm('modifier-livre')">Modifier un livre</button>
+<button onclick="showForm('supprimer-livre')">Supprimer un livre</button>
+
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    <div style="display: flex;">
+
+        
+        <div style="width: 200px; background-color: #f0f0f0; padding: 10px;">
+            <button onclick="loadAjouterLivre()">Ajouter Livre</button>
+            <button onclick="loadListeLivres()">Liste des Livres</button>
+            <button onclick="loadListeAdherant()">Liste des adherants</button>
+        </div>
+
+       
+        <div id="content" style="flex-grow: 1; padding: 10px;">
+            
+        </div>
+
+    </div>
+
+    <script>
+        function loadAjouterLivre() {
+            // Chargez le contenu pour Ajouter Livre depuis le serveur
+            $("#content").load("/ajouter_livre");
+        }
+
+        function loadListeLivres() {
+            // Chargez le contenu pour Liste des Livres depuis le serveur
+            $("#content").load("/liste_livres");
+        }
+        function loadListeAdherant() {
+            // Chargez le contenu pour Liste des Livres depuis le serveur
+            $("#content").load("/liste/adherant");
+        }
+    </script>
+</body>
+</html>
+-->
+
+<!-- admin.html 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Admin</title>
+</head>
+<body>
+    <h1>Bienvenue sur la page administrateur</h1>
+    <p>En tant qu'administrateur, vous avez accès à des fonctionnalités spécifiques :</p>
+    <ul>
+        <li><a href="{{ url_for('ajouter_livre') }}">Ajouter un livre</a></li>
+        <li><a href="{{ url_for('liste_livres') }}">Liste des livres</a></li>
+       
+    </ul>
+    <p><a href="{{ url_for('logout') }}">Se déconnecter</a></p>
+</body>
+</html>
+-->

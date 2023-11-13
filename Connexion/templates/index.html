@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bibliothèque du Mirail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .header button {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        .text-container {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button>savoir plus</button>
+        <button><a href="{{ url_for('inscription') }}">S'inscrire</a></button>
+        <button><a href="{{ url_for('login') }}">Se connecter</a></button>
+    </div>
+    <div class="main-content">
+        <div class="image-container">
+            <img src="https://cdn.pixabay.com/photo/2014/10/14/20/14/library-488690_640.jpg" alt="Image 1">
+            <img src="https://cdn.pixabay.com/photo/2017/08/07/16/41/reading-2605540_640.jpg" alt="Image 2">
+            <img src="https://cdn.pixabay.com/photo/2017/08/01/00/40/books-2562331_640.jpg" alt="Image 3">
+            <img src="https://media.istockphoto.com/id/1320963409/fr/photo/les-gens-dans-la-grande-biblioth%C3%A8que.webp?b=1&s=612x612&w=0&k=20&c=M22dbN2YO4Gdb1c-ETeS1rJi91qrIkjpoQ6ef47_Mtk=" alt="Image 4">
+            <img src="https://cdn.pixabay.com/photo/2015/06/13/11/28/library-807931_640.jpg" alt="Image 5">
+        </div>
+        <div class="text-container">
+            <h1>BIBLIOTHEQUE DU MIRAIL</h1>
+            <p>DECOUVERTE:<br>
+                Bienvenue sur la Bibliothèque du Mirail, un sanctuaire de la lecture où les mots prennent vie et les histoires se déploient sous vos yeux. Nous croyons en la puissance de la lecture pour élargir les horizons, nourrir l'imagination et stimuler l'esprit. Comme le célèbre auteur Jorge Luis Borges l'a si joliment dit, "Je suis, tu es, vous êtes ce que vous lisez." Ici, vous trouverez une riche collection de livres numériques et de ressources pour satisfaire votre soif de connaissances et d'aventures. Que vous soyez un amateur de fiction, un passionné de non-fiction, un étudiant en quête de ressources académiques ou simplement un amoureux des mots, la Bibliothèque du Mirail est votre portail vers des mondes infinis.</p>
+            <p>Plongez dans des univers fascinants, découvrez de nouvelles perspectives et explorez des idées inexplorées. Notre plateforme conviviale vous permet de parcourir des genres variés, d'effectuer des réservations, d'emprunter, etc... Rejoignez notre communauté de lecteurs passionnés, en vous inscrivant ou en vous connectant.</p>
+        </div>
+    </div>
+    <script>
+        const images = document.querySelectorAll('.image-container img');
+        let currentImageIndex = 0;
+
+        function showNextImage() {
+            images[currentImageIndex].style.display = 'none';
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            images[currentImageIndex].style.display = 'block';
+        }
+
+        images[currentImageIndex].style.display = 'block';
+        setInterval(showNextImage, 3000); // Change image every 3 seconds
+    </script>
+</body>
+</html>
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BIBLIOTHEQUE</title>
+</head>
+<body>
+    <h1>Bienvenue sur la site de la Bibliothèque du Mirail!</h1>
+    <p>Vous êtes actuellement non connecté.</p>
+    <p>Choisissez une option:</p>
+    <ul>
+        <li><a href="{{ url_for('inscription') }}">S'inscrire</a></li>
+        <li><a href="{{ url_for('login') }}">Se connecter</a></li>
+    </ul>
+</body>
+</html>
+-->

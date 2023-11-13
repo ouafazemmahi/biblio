@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Livres</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Livres</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ISBN</th>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Éditeur</th>
+                <th>Nombre d'exemplaires</th>
+                <th>Disponibilité</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for livre in livres %}
+                <tr>
+                    <td>{{ livre.ISBN }}</td>
+                    <td>{{ livre.titre }}</td>
+                    <td>{{ livre.auteur }}</td>
+                    <td>{{ livre.éditeur }}</td>
+                    <td>{{ livre.Nb_exemplaire }}</td>
+                    <td>{{ livre.Disponibilité }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('ajouter_livre') }}">Ajouter un livre</a>
+</body>
+</html>
